@@ -1,0 +1,275 @@
+#include <GL/freeglut.h>
+#include <GL/gl.h>
+#include <stdlib.h>
+
+
+GLfloat spin = 0.0;
+GLfloat spin1 = 0.0;
+GLfloat flag = 0.0;
+
+
+void boat()
+{
+      glPushMatrix();
+    	glColor3f(1, 0, 0);
+    	//glColor3f(0, 0, 0);
+glRotatef(-spin1, 0.0, 0.0, 1.0);
+glBegin(GL_POLYGON);
+glColor3f(0, 0, 1);
+      glVertex3f (1, 0, 0);
+      glColor3f(0, 1, 0);
+      glVertex3f (0, 1, 0);
+      glColor3f(0, 0, 1);
+      glVertex3f (-1, 0, 0);
+      glColor3f(0, 1, 0);
+      glVertex3f (0, -1, 0);
+	glEnd();
+	/*glBegin(GL_POLYGON);
+      glVertex3f (4, 4, 0);
+      glVertex3f (-4, 4, 0);
+      glVertex3f (-1, -1, 0);
+      glVertex3f (1, -1, 0);*/
+      glPopMatrix();
+}
+void boat5()
+{
+      glPushMatrix();
+    	glColor3f(1, 0, 0);
+    	//glColor3f(0, 0, 0);
+//glRotatef(-spin1, 0.0, 0.0, 1.0);
+glBegin(GL_POLYGON);
+glColor3f(0, 0, 1);
+      glVertex3f (1, 0, 0);
+      glColor3f(0, 1, 0);
+      glVertex3f (0, 1, 0);
+      glColor3f(0, 0, 1);
+      glVertex3f (-1, 0, 0);
+      glColor3f(0, 1, 0);
+      glVertex3f (0, -1, 0);
+	glEnd();
+	/*glBegin(GL_POLYGON);
+      glVertex3f (4, 4, 0);
+      glVertex3f (-4, 4, 0);
+      glVertex3f (-1, -1, 0);
+      glVertex3f (1, -1, 0);*/
+      glPopMatrix();
+}
+void boat2()
+{
+      glPushMatrix();
+    	glColor3f(1, 0, 0);
+    	//glColor3f(0, 0, 0);
+glRotatef(-spin1, 0.0, 0.0, 1.0);
+glBegin(GL_POLYGON);
+glColor3f(1, 0, 0);
+      glVertex3f (1, 0, 0);
+      glColor3f(1, 1, 1);
+      glVertex3f (0, 1, 0);
+      glColor3f(1, 0, 0);
+      glVertex3f (-1, 0, 0);
+      glColor3f(1, 1, 1);
+      glVertex3f (0, -1, 0);
+	glEnd();
+	/*glBegin(GL_POLYGON);
+      glVertex3f (4, 4, 0);
+      glVertex3f (-4, 4, 0);
+      glVertex3f (-1, -1, 0);
+      glVertex3f (1, -1, 0);*/
+      glPopMatrix();
+}
+void boat1()
+{
+     glPushMatrix();
+     glRotatef(-spin1, 0.0, 0.0, 1.0);
+    	glColor3f(1, 1, 0);
+    	//glColor3f(0, 0, 0);
+
+glBegin(GL_POLYGON);
+      glVertex3f (.5, 0, 0);
+      glVertex3f (0, .5, 0);
+      glVertex3f (-.5, 0, 0);
+      glVertex3f (0, -.5, 0);
+	glEnd();
+	glPopMatrix();
+	/*glBegin(GL_POLYGON);
+      glVertex3f (4, 4, 0);
+      glVertex3f (-4, 4, 0);
+      glVertex3f (-1, -1, 0);
+      glVertex3f (1, -1, 0);*/
+}
+void pos()
+{
+
+  glPushMatrix();
+	boat2();
+	//glRotatef(-spin, 0.0, 0.0, 1.0);
+	glTranslatef(2,0,0);
+	boat();
+	glTranslatef(-4,0,0);
+	boat();
+	glTranslatef(2,2,0);
+	boat();
+	glTranslatef(0,-4,0);
+	boat();
+	glTranslatef(0,-1.5,0);
+	boat1();
+	glTranslatef(0,-1.5,0);
+	boat();
+	glTranslatef(1.5,1.5,0);
+	boat();
+	glTranslatef(-3,0,0);
+	boat();
+	glTranslatef(-2,3.5,0);
+	boat1();
+	glTranslatef(-1.5,0,0);
+	boat();
+	glTranslatef(1.5,1.5,0);
+	boat();
+	glTranslatef(-0,-3,0);
+	boat();
+	glTranslatef(7,1.5,0);
+	boat1();
+	glTranslatef(1.5,0,0);
+	boat();
+	glTranslatef(-1.5,1.5,0);
+	boat();
+	glTranslatef(0,-3,0);
+	boat();
+	glTranslatef(-3.5,5,0);
+	boat1();
+	glTranslatef(0,1.5,0);
+	boat();
+	glTranslatef(-1.5,-1.5,0);
+	boat();
+	glTranslatef(3,0,0);
+	boat();
+	glPopMatrix();
+}
+void display(void){
+
+	glClear(GL_COLOR_BUFFER_BIT);
+
+  //sun();
+//	earth();
+	//moon();
+
+	//solar();
+	//loop();
+//boat();
+pos();
+	//earth_moon();
+	glutSwapBuffers();
+}
+
+
+void spinDisplay(void)
+{
+	spin = spin + 0.2;
+	spin1 = spin1 + 1;
+	if (spin > 360.0)spin = spin - 360.0;
+	if (spin1 > 360.0)spin1 = spin1 - 360.0;
+
+	glutPostRedisplay();
+}
+
+
+
+void init(void)
+{
+
+	glClearColor(0.0f, 0.0f, 0.0f, 0.5f);				// Black Background
+	glOrtho(-10,10,-10,10,10,-10);
+}
+
+
+void reshape (int w, int h)
+{
+    glViewport (0, 0, (GLsizei) w, (GLsizei) h);
+}
+
+static void key(unsigned char key, int x, int y)
+{
+    switch (key)
+    {
+        case 27 :
+        case 'g':
+            glutIdleFunc(spinDisplay);
+            break;
+
+             case 'k':{
+           glTranslatef(2,0,0);
+           pos();
+             }
+            break;
+             case 'j':{
+           glTranslatef(-2,0,0);
+           pos();
+             }
+            break;
+
+
+       /* case '+':
+            slices++;
+            stacks++;
+            break;
+
+        case '-':
+            if (slices>3 && stacks>3)
+            {
+                slices--;
+                stacks--;
+            }
+            break;
+            */
+    }
+
+    glutPostRedisplay();
+}
+
+
+void mouse(int button, int state, int x, int y)
+{
+   switch (button) {
+      case GLUT_LEFT_BUTTON:
+         if (state == GLUT_DOWN)glutIdleFunc(spinDisplay);
+         break;
+      case GLUT_MIDDLE_BUTTON:
+      case GLUT_RIGHT_BUTTON:
+         if (state == GLUT_DOWN)glutIdleFunc(NULL);
+         break;
+      default:
+         break;
+   }
+}
+
+
+
+int main(int argc, char *argv[])
+{
+    glutInit(&argc, argv);
+
+   //printf("\n\t\tPress mouse left button to rotate and right button to stop.\n");
+
+   glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
+
+   glutInitWindowSize (500, 500);
+
+   glutInitWindowPosition (100, 100);
+
+   glutCreateWindow ("MIST");
+
+   init ();
+
+   glutDisplayFunc(display);
+   glutReshapeFunc(reshape);
+//glutMouseFunc(mouse);
+ //glutIdleFunc(spinDisplay);
+     glutKeyboardFunc(key);
+
+   glutMainLoop();
+
+   return 0;
+}
+
+
+

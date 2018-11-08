@@ -1,0 +1,150 @@
+#include <GL/freeglut.h>
+#include <GL/gl.h>
+#include <stdlib.h>
+
+
+
+int i,j;
+void red()
+{
+  // glTranslatef(1,0,0);
+	glColor3f(1, 0, 0);
+	glPushMatrix();
+	glRectf(0,0,1,1);
+	glPopMatrix();
+}
+void green()
+{
+  // glTranslatef(1,0,0);
+	glColor3f(0, 1, 0);
+	glPushMatrix();
+	glRectf(0,0,1,1);
+	glPopMatrix();
+}
+void blue()
+{
+  // glTranslatef(1,0,0);
+	glColor3f(0, 0, 1);
+	glPushMatrix();
+	glRectf(0,0,1,1);
+	glPopMatrix();
+}
+void pattern()
+{
+    glPushMatrix();
+    red();
+     glTranslatef(1,0,0);
+     green();
+     glTranslatef(1,0,0);
+     blue();
+     glPopMatrix();
+}
+void pattern2()
+{
+    glPushMatrix();
+    green();
+     glTranslatef(1,0,0);
+     blue();
+     glTranslatef(1,0,0);
+     red();
+     glPopMatrix();
+}
+void pattern3()
+{
+    glPushMatrix();
+    blue();
+     glTranslatef(1,0,0);
+     red();
+     glTranslatef(1,0,0);
+     green();
+     glPopMatrix();
+}
+void cube()
+{
+     glPushMatrix();
+     pattern();
+     glTranslatef(0,1,0);
+     pattern2();
+     glTranslatef(0,1,0);
+     pattern3();
+     glPopMatrix();
+
+
+
+}
+void box()
+{
+    glPushMatrix();
+
+        for(j=0;j<=9;j=j+3)
+    {
+
+     cube();
+       glTranslatef(3,0,0);
+       cube();
+
+    }
+     glPopMatrix();
+
+   }
+
+void full()
+{
+
+  glPopMatrix();
+
+           box();
+       glTranslatef(0,3,0);
+        box();
+       glTranslatef(0,3,0);
+        box();
+        glTranslatef(0,3,0);
+        box();
+
+
+ glPopMatrix();
+}
+
+
+void display(void)
+{
+
+	glClear(GL_COLOR_BUFFER_BIT);
+	full();
+	glutSwapBuffers();
+}
+
+void init(void)
+{
+
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);				// Black Background
+	glOrtho(-10,10,-10,10,2,-2);
+}
+
+
+void reshape (int w, int h)
+{
+    glViewport (0, 0, w, h);
+}
+
+
+
+int main(int argc, char *argv[])
+{
+    glutInit(&argc, argv);
+//   printf("\n\t\tPress mouse left button to rotate and right button to stop.\n");
+
+   glutInitDisplayMode (GLUT_DOUBLE | GLUT_RGB);
+   glutInitWindowSize (500, 500);
+   glutInitWindowPosition (100, 100);
+   glutCreateWindow ("MIST");
+   init ();
+   glutDisplayFunc(display);
+   glutReshapeFunc(reshape);
+
+   glutMainLoop();
+   return 0;
+}
+
+
+

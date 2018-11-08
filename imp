@@ -1,0 +1,9 @@
+
+
+cd Sample-OpenGL-Programs
+
+nano main.c || gedit main.c
+
+g++ main.c -lglut -lGL -lGLEW -lGLU -o OpenGLExample
+
+./OpenGLExample
